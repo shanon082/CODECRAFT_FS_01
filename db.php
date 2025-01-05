@@ -1,5 +1,5 @@
 <?php
-$host ='localhost:8080';
+$host ='localhost';
 $dbname = 'users_authentication_system';
 $username = 'root';
 $password = '';
