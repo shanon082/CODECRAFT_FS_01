@@ -1,0 +1,114 @@
+body{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-image: linear-gradient(60deg, rgb(18, 18, 112), black);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container{
+    background-color: white;
+    border-radius: 10px;
+    display: flex;
+    height: 70%;
+    width: 60%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.container .some-info{
+    text-align: center;
+    padding: 5rem 5rem;
+    justify-content: center;
+    display: flex;
+    background-color: rgb(188, 188, 242);
+    flex-direction: column;
+    height: 70%;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid rgb(18, 18, 112);
+    border-radius: 10px;
+}
+
+.container .some-info h1, .container form h1{
+    color: rgb(18, 18, 112);
+    font-size: 3rem;
+}
+
+.container .some-info p{
+    color: gray;
+}
+
+.container .some-info h2{
+    color: rgb(18, 18, 112);
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+.container .some-info button, .container form button{
+    outline: none;
+    padding: 10px 20px;
+    border-radius: 15px;
+    border: none;
+    background-color: rgb(18, 18, 112);
+    color: white;
+    font-size: 20px;
+}
+
+.container .some-info button:hover, .container form button:hover{
+    outline: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 15px;
+    border: none;
+    background-color: rgb(98, 98, 162);
+    color: white;
+    font-size: 20px;
+    margin-top: 10px;
+}
+
+.container form{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.container form label{
+    font-size: 22px;
+    margin-top: 10px;
+}
+.container form input{
+    outline: none;
+    width: 100%;
+    height: 30px;
+    padding: 2px;
+    border-radius: 5px;
+    border: 1px solid rgb(18, 18, 112);
+    font-size: 17px;
+    margin-bottom: 2px;
+}
+
+.container form span{
+    color: red;
+    margin-bottom: 10px;
+    display: none;
+}
+
+.container form a{
+    margin: 10px 0;
+    text-decoration: none;
+    cursor: pointer;
+    color: blue;
+    text-align: center;
+}
+
+.container .login-form{
+    padding: 5rem 5rem;
+    width: 50%;
+}
