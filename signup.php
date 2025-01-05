@@ -20,18 +20,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Check if email already exists
-    $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email");
-    $stmt->bindParam(':email', $email);
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
     $stmt->execute();
-    if ($stmt->rowCount() > 0) {
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
         die("Email is already registered. Please use a different email.");
     }
 
     // Check if username already exists
-    $stmt = $conn->prepare("SELECT * FROM users WHERE username = :username");
-    $stmt->bindParam(':username', $username);
+    $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
+    $stmt->bind_param("s", $username);
     $stmt->execute();
-    if ($stmt->rowCount() > 0) {
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
         // Suggest alternative usernames
         $namePart = explode('@', $email)[0];
         $suggestions = [
@@ -52,17 +54,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
     // Insert user data into the database
-    $stmt = $conn->prepare("INSERT INTO users (username, email, password_hash, role) VALUES (:username, :email, :password_hash, :role)");
-    $stmt->bindParam(':username', $username);
-    $stmt->bindParam(':email', $email);
-    $stmt->bindParam(':password_hash', $password_hash);
-    $stmt->bindParam(':role', $role);
+    $stmt = $conn->prepare("INSERT INTO users (username, email, password_hash, role) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $username, $email, $password_hash, $role);
 
-    try {
-        $stmt->execute();
+    if ($stmt->execute()) {
         header("Location: login.html");
-    } catch (PDOException $e) {
-        echo "Error: " . $e->getMessage();
+    } else {
+        echo "Error: " . $stmt->error;
     }
 }
 ?>

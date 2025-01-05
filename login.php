@@ -6,20 +6,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
+    // Validate email format
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         die("Invalid email format. Please enter a valid email.");
     }
 
-    if (!$user) {
-        echo "No account found with this email. Please try using your email instead.";
-        exit;
-    }  
-    
-
-    $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email");
-    $stmt->bindParam(':email', $email);
+    // Prepare the SQL statement using MySQLi
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
     $stmt->execute();
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
 
     if ($user && password_verify($password, $user['password_hash'])) {
         $_SESSION['username'] = $user['username'];

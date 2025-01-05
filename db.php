@@ -4,11 +4,11 @@ $dbname = 'users_authentication_system';
 $username = 'root';
 $password = '';
 
-try{
-    $conn = new mysqli($host, $username, $password, $dbname);
-    
-} catch(Exception $e) {
-    echo 'connection failed: '. $e->getMessage();
-}
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 ?>

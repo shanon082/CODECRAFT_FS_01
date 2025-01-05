@@ -13,9 +13,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
     $email = $_SESSION['email'];
 
-    $stmt = $conn->prepare("UPDATE users SET password_hash = :password_hash WHERE email = :email");
-    $stmt->bindParam(':password_hash', $password_hash);
-    $stmt->bindParam(':email', $email);
+    $stmt = $conn->prepare("UPDATE users SET password_hash = ? WHERE email = ?");
+    $stmt->bind_param("ss", $password_hash, $email);
     $stmt->execute();
 
     echo "Password reset successfully. <a href='login.html'>Login</a>";

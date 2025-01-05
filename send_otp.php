@@ -10,12 +10,14 @@ use PHPMailer\PHPMailer\Exception;
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
 
-    $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email");
-    $stmt->bindParam(':email', $email);
+    $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
+    $stmt->bind_param("s", $email);
     $stmt->execute();
+    $result = $stmt->get_result();
 
-    if ($stmt->rowCount() > 0) {
+    if ($result->num_rows > 0) {
         $otp = rand(100000, 999999);  // Generate a 6-digit OTP
+        session_start();
         $_SESSION['otp'] = $otp;
         $_SESSION['email'] = $email;
 
