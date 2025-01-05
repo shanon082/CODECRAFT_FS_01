@@ -12,21 +12,21 @@
             <h1>Welcome</h1>
             <p>Users account security is our first priority, please login in to contunie.</p>
             <h2>First time to visit us, <br>press the button below to <span>register/ sign up</span></h2>
-            <button type="submit" href="signup.html">Sign Up</button>
+            <button href="signup.html">Sign Up</button>
         </div>
 
         <div class="login-form">
             <form action="login.php" method="post">
                 <h1>Login</h1>
                 <label for="email">Email</label>
-                <input type="email" placeholder="Enter your email">
+                <input type="email" placeholder="Enter your email" name="email" required>
 
                 <label for="password">Password </label>
-                <input type="password" placeholder="Enter your password">
+                <input type="password" placeholder="Enter your password" name="password" required>
 
                 <span class="wrong-details">Wrong details entered check again and sign in</span>
 
-                <a href="">forgot password</a>
+                <a href="forgot_password.html">forgot password</a>
 
                 <button type="submit">Login</button>
             </form>
