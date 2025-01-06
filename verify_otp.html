@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="forgetpass.css">
 </head>
 <body>
-    <form action="verify_otp.php" method="post">
-        <label for="otp">Enter OTP</label>
-        <input type="text" name="otp" placeholder="Enter your OTP" required>
-        <button type="submit">Verify OTP</button>
-    </form>
-    
+    <div class="container">
+        <h1>Verify your OTP code</h1>
+        <form action="verify_otp.php" method="post">
+            <label for="otp">Enter OTP</label>
+            <input type="text" name="otp" placeholder="Enter your OTP" required>
+            <button type="submit">Verify OTP</button>
+        </form>
+    </div>    
 </body>
 </html>
