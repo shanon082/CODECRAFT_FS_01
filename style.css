@@ -50,7 +50,7 @@ body{
     text-align: center;
 }
 
-.container form a{
+.container form button, .container .some-info a{
     outline: none;
     padding: 10px 20px;
     border-radius: 15px;
@@ -58,9 +58,10 @@ body{
     background-color: rgb(18, 18, 112);
     color: white;
     font-size: 20px;
+    margin-top: 5px;
 }
 
-.container form button:hover{
+.container form button:hover, .container .some-info a:hover{
     outline: none;
     padding: 10px 20px;
     cursor: pointer;
@@ -74,6 +75,7 @@ body{
 
 .container .some-info a{
     text-decoration: none;
+
 }
 
 .container form{
