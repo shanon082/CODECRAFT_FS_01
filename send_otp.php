@@ -1,8 +1,8 @@
 <?php
 require 'db.php';
-require 'PHPMailer/PHPMailer.php';
-require 'PHPMailer/SMTP.php';
-require 'PHPMailer/Exception.php';
+require 'PHPMailer/PHPMailer/PHPMailer.php';
+require 'PHPMailer/PHPMailer/SMTP.php';
+require 'PHPMailer/PHPMailer/Exception.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -25,14 +25,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail = new PHPMailer(true);
         try {
             $mail->isSMTP();
-            $mail->Host = 'smtp.example.com';  // Use your SMTP server
+            $mail->Host = 'smtp.gmail.com';  // Use your SMTP server
             $mail->SMTPAuth = true;
-            $mail->Username = 'your_email@example.com';  // Your email
-            $mail->Password = 'your_email_password';  // Your password
+            $mail->Username = 'shanonsimon082@gmail.com';  // Your email
+            $mail->Password = 'hrga hmmt yhkt wvhj';  // Your password
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 
-            $mail->setFrom('your_email@example.com', 'YourAppName');
+            $mail->setFrom('shanonsimon082@gmail.com', 'CODECRAFT_FS_01');
             $mail->addAddress($email);
 
             $mail->isHTML(true);
