@@ -16,6 +16,7 @@ if ($_SESSION['role'] !== 'user') {
 </head>
 <body>
 <h1>Welcome, <?php echo htmlspecialchars($_SESSION['username']); ?>!</h1>
+<p>Your role: <?php echo htmlspecialchars($user['role']); ?></p>
 <a href="logout.php">Logout</a>
 
 </body>
