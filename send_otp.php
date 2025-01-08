@@ -16,19 +16,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        $otp = rand(100000, 999999);  // Generate a 6-digit OTP
+        $otp = rand(100000, 999999); 
         session_start();
         $_SESSION['otp'] = $otp;
         $_SESSION['email'] = $email;
 
-        // Email setup
+        
         $mail = new PHPMailer(true);
         try {
             $mail->isSMTP();
-            $mail->Host = 'smtp.gmail.com';  // Use your SMTP server
+            $mail->Host = 'smtp.gmail.com';  
             $mail->SMTPAuth = true;
-            $mail->Username = 'shanonsimon082@gmail.com';  // Your email
-            $mail->Password = 'hrga hmmt yhkt wvhj';  // Your password
+            $mail->Username = 'shanonsimon082@gmail.com';  
+            $mail->Password = 'hrga hmmt yhkt wvhj';  
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port = 587;
 

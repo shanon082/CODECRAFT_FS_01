@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,6 +18,13 @@
             <label for="confirm_password">Confirm Password</label>
             <input type="password" name="confirm_password" required>
             <button type="submit">Reset Password</button>
+
+            <?php
+                if(isset($_SESSION["error"])){
+                    echo $_SESSION["error"];
+                    unset($_SESSION["error"]);
+                }
+            ?>
         </form>
     </div>
       

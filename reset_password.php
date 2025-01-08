@@ -2,12 +2,16 @@
 session_start();
 require 'db.php';
 
+unset($_SESSION['error']);
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
 
     if ($password !== $confirm_password) {
-        die("Passwords do not match.");
+        $_SESSION['error'] = "Passwords do not match.";
+        header("Location: reset_passwordhtml.php");
+        exit();
     }
 
     $password_hash = password_hash($password, PASSWORD_DEFAULT);
@@ -17,6 +21,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ss", $password_hash, $email);
     $stmt->execute();
 
-    echo "Password reset successfully. <a href='login.html'>Login</a>";
+    header("Location: loginhtml.php");
 }
 ?>
