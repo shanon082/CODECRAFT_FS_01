@@ -9,14 +9,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $confirm_password = $_POST['confirm_password'];
     $role = $_POST['role'];
 
+    unset($_SESSION['error']);
     // Check if passwords match
     if ($password !== $confirm_password) {
-        die("Passwords do not match!");
+        $_SESSION['error'] = "Passwords do not match!";
+        header("Location: signuphtml.php");
+        exit();
     }
 
     // Validate email format
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        die("Invalid email format. Please enter a valid email.");
+        $_SESSION['error'] = "Invalid email format. Please enter a valid email.";
+        header("Location: signuphtml.php");
+        exit();
     }
 
     // Check if email already exists
@@ -25,7 +30,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->execute();
     $result = $stmt->get_result();
     if ($result->num_rows > 0) {
-        die("Email is already registered. Please use a different email.");
+        $_SESSION['error'] = "Email is already registered. Please use a different email.";
+        header("Location: signuphtml.php");
+        exit();
     }
 
     // Check if username already exists
@@ -43,9 +50,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $username . rand(1, 100)
         ];
 
-        echo "Username already exists. Suggested usernames: ";
+        $_SESSION['error'] = "Username already exists. Suggested usernames: ";
         foreach ($suggestions as $suggestion) {
-            echo "<br>- " . htmlspecialchars($suggestion);
+            header( "Location: signuphtml.php") . htmlspecialchars($suggestion);
         }
         exit;
     }
@@ -58,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ssss", $username, $email, $password_hash, $role);
 
     if ($stmt->execute()) {
-        header("Location: login.html");
+        header("Location: loginhtml.php");
     } else {
         echo "Error: " . $stmt->error;
     }

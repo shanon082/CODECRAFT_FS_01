@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,15 +13,15 @@
 <body>
     <div class="container">
         <div class="some-info">
-            <h1>Welcome</h1>
+            <h2>Welcome</h2>
             <p>Users account security is our first priority, please log in to continue.</p>
             <h2>First time to visit us? <br>Press the button below to <span>register/sign up</span></h2>
-            <a href="signup.html">Sign Up</a>
+            <a href="signuphtml.php">Sign Up</a>
         </div>
 
         <div class="login-form">
             <form action="login.php" method="post">
-                <h1>Login</h1>
+                <h2>Login</h2>
                 <label for="email">Email</label>
                 <input type="email" placeholder="Enter your email" name="email" required>
 
@@ -26,9 +30,8 @@
 
                 
                 <?php
-                session_start();
                 if (isset($_SESSION['error'])) {
-                    echo '<span class="wrong-details" style="color: red;">' . htmlspecialchars($_SESSION['error']) . '</span>';
+                    echo $_SESSION['error'];
                     unset($_SESSION['error']); 
                 }
                 ?>
