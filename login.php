@@ -6,12 +6,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Validate email format
+    unset($_SESSION['error']);
+
     if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        die("Invalid email format. Please enter a valid email.");
+        $_SESSION['error'] = "Invalid email format. Please enter a valid email.";
+        header("Location: loginhtml.php");
+        exit;
     }
 
-    // Prepare the SQL statement using MySQLi
     $stmt = $conn->prepare("SELECT * FROM users WHERE email = ?");
     $stmt->bind_param("s", $email);
     $stmt->execute();
@@ -28,7 +30,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: user_dashboard.php");
         }
     } else {
-        echo "Invalid email or password.";
+        $_SESSION['error'] = "Invalid email or password.";
+        header("Location: loginhtml.php");
     }
 }
 ?>
