@@ -52,7 +52,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         $_SESSION['error'] = "Username already exists. Suggested usernames: ";
         foreach ($suggestions as $suggestion) {
-            header( "Location: signuphtml.php") . htmlspecialchars($suggestion);
+            header( "Location: signuphtml.php");
+            $_SESSION['error'] = htmlspecialchars($suggestion);
         }
         exit;
     }
