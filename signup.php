@@ -50,10 +50,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $username . rand(1, 100)
         ];
 
-        $_SESSION['error'] = "Username already exists. Suggested usernames: ";
+        
         foreach ($suggestions as $suggestion) {
             header( "Location: signuphtml.php");
-            $_SESSION['error'] = htmlspecialchars($suggestion);
+            $_SESSION['error'] = "Username already exists. Suggested username: " .htmlspecialchars($suggestion);
         }
         exit;
     }
